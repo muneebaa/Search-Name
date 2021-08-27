@@ -23,16 +23,15 @@ function render(things) {
 
 render(names);
 
-// *** Use `input`, not `keyup`
 searchInput.addEventListener("input", function (event) {
-    let searchQuery = event.target.value.toLowerCase().charAt(0);
+    let searchQuery = event.target.value.toLowerCase();
     let allNamesDOMCollection = document.getElementsByClassName('names');
 
     for (let i = 0; i < allNamesDOMCollection.length; i++) {
-        // *** Remove the whitespace before getting first character
-        let currentName = allNamesDOMCollection[i].textContent.trim().toLowerCase().charAt(0);
-        // −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−^^^^^^^
-        if (currentName.includes(searchQuery)) {
+
+        let currentName = allNamesDOMCollection[i].textContent.trim().toLowerCase();
+
+        if (currentName.startsWith(searchQuery)) {
             allNamesDOMCollection[i].style.display = "block";
         } else {
             allNamesDOMCollection[i].style.display = "none";
